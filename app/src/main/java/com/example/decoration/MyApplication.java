@@ -10,7 +10,7 @@ import com.se7en.utils.SystemUtil;
  */
 public class MyApplication extends Application {
 
-private DbUtils dbUtils;
+
 
     @Override
     public void onCreate() {
