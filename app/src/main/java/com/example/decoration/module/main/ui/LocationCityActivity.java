@@ -6,12 +6,12 @@ import android.os.Bundle;
 import com.example.decoration.R;
 import com.example.decoration.base.BaseActivity;
 
-public class MainActivity extends BaseActivity {
+public class LocationCityActivity extends BaseActivity {
 
 
     @Override
     protected int setViewId() {
-        return R.layout.activity_main;
+        return R.layout.activity_location_city;
     }
 
     @Override
@@ -33,4 +33,6 @@ public class MainActivity extends BaseActivity {
     protected void loadDate() {
 
     }
+
+
 }
