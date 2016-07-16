@@ -16,6 +16,7 @@ public class Welcome1Activity extends BaseActivity {
     public final long SPLASH_LENGTH=2000;
     private int mcurrentVersion;
     private int mlastVersion;
+    private boolean isFisrtRun=false;//是否第一次运行
 
     @Override
     protected int setViewId() {
@@ -29,7 +30,7 @@ public class Welcome1Activity extends BaseActivity {
 
     @Override
     protected void init() {
-
+        //
 
         mcurrentVersion= SystemUtil.getSystemVersionCode();
         mlastVersion=SystemUtil.getSharedInt(Constant.VERSION_STRING,-1);
@@ -39,13 +40,19 @@ public class Welcome1Activity extends BaseActivity {
             public void run() {
                 //如果是版本更新 或者第一次安装 进入viewpager欢迎界面
                 if(mcurrentVersion>mlastVersion||mlastVersion==-1){
-                    Intent intent=new Intent(Welcome1Activity.this,Welcome2Activity.class);
-                    startActivity(intent);
-                    finish();
-                }else{
-                    Intent intent=new Intent(Welcome1Activity.this,MainActivity.class);
-                    startActivity(intent);
-                    finish();
+
+
+                    if(!isFisrtRun){
+                        isFisrtRun = SystemUtil.getSharedBoolean("isFirstRun", true);
+                        Intent intent=new Intent(Welcome1Activity.this,Welcome2Activity.class);
+                        startActivity(intent);
+                        finish();
+                    }else{
+                        Intent intent=new Intent(Welcome1Activity.this,MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+
                 }
 
             }
