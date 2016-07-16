@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:background="@drawable/popupwindow_shape_main"
+        android:layout_width="281dp"
+        android:layout_height="140dp">
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/title_popupwindow_main"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+            android:text="退出应用"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/title_popupwindow_main"
+            android:textSize="16sp"
+            android:text="确认退出应用？"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:id="@+id/popbtn_container_main"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+            android:background="@drawable/popup_button_selector"
+            android:text="取消"
+            android:id="@+id/popupbtn_cancel_main"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_gravity="center_vertical"
+                android:background="#ccc"
+                android:layout_width="1dp"
+                android:layout_height="30dp"/>
+            <Button
+                android:background="@drawable/popup_button_selector"
+                android:textColor="@color/radiobtn_checked"
+                android:text="退出"
+                android:id="@+id/popupbtn_exit_main"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_alignTop="@id/popbtn_container_main"
+            android:background="@color/radiobtn_checked"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
