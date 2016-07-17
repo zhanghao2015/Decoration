@@ -85,7 +85,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void init() {
-        //
         //默认设置进入页面时点击了主页
         radiobtn_home.setChecked(true);
         pw = new PopupWindow(pwView, ViewGroup.LayoutParams.WRAP_CONTENT,

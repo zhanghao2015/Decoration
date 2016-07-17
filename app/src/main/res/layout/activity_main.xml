@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".module.main.ui.MainActivity">
+    tools:context=".modules.main.ui.MainActivity">
 
     <RelativeLayout
         android:id="@+id/titlebar_main"
@@ -81,12 +81,6 @@
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-
-
-
-
-
-
 
     <RadioGroup
         android:id="@+id/radio_group"
