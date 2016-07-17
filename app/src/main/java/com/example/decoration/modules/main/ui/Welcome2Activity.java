@@ -1,10 +1,8 @@
-package com.example.decoration.module.main.ui;
+package com.example.decoration.modules.main.ui;
 
 import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -102,7 +100,7 @@ public class Welcome2Activity extends BaseActivity {
         entry_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Welcome2Activity.this,MainActivity.class);
+                Intent intent=new Intent(Welcome2Activity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }

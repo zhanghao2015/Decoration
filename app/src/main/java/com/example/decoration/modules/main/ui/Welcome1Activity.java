@@ -1,11 +1,8 @@
-package com.example.decoration.module.main.ui;
+package com.example.decoration.modules.main.ui;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
-import android.os.SystemClock;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import com.example.decoration.R;
 import com.example.decoration.base.BaseActivity;
@@ -45,7 +42,7 @@ public class Welcome1Activity extends BaseActivity {
                         startActivity(intent);
                         finish();
                     }else{
-                        Intent intent=new Intent(Welcome1Activity.this,MainActivity.class);
+                        Intent intent=new Intent(Welcome1Activity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
                     }

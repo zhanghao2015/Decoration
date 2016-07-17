@@ -1,4 +1,4 @@
-package com.example.decoration.module.main.ui;
+package com.example.decoration.modules.beautifulImg;
 
 import android.view.View;
 
@@ -8,10 +8,11 @@ import com.example.decoration.base.BaseFragment;
 /**
  * Created by Administrator on 2016/7/16.
  */
-public class HomeFragment extends BaseFragment{
+public class BeautifulEffectFragment extends BaseFragment{
     @Override
     protected int setViewID() {
-        return R.layout.layout_home_fragment;
+        return R.layout.layout_beautifuleffect_fragment;
+//
     }
 
     @Override

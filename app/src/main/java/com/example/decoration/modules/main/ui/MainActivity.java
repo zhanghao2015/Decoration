@@ -1,17 +1,13 @@
-package com.example.decoration.module.main.ui;
+package com.example.decoration.modules.main.ui;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -20,6 +16,12 @@ import android.widget.Toast;
 
 import com.example.decoration.R;
 import com.example.decoration.base.BaseActivity;
+
+import com.example.decoration.modules.beautifulImg.BeautifulEffectFragment;
+import com.example.decoration.modules.home.HomeFragment;
+import com.example.decoration.modules.hzone.OwenerFragment;
+import com.example.decoration.modules.myself.MyFragment;
+import com.example.decoration.modules.nearby.NearByFragment;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 

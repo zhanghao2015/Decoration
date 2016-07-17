@@ -1,4 +1,4 @@
-package com.example.decoration.module.main.ui;
+package com.example.decoration.modules.myself;
 
 import android.view.View;
 
@@ -8,10 +8,10 @@ import com.example.decoration.base.BaseFragment;
 /**
  * Created by Administrator on 2016/7/16.
  */
-public class OwenerFragment extends BaseFragment{
+public class MyFragment extends BaseFragment{
     @Override
     protected int setViewID() {
-        return R.layout.layout_owener_fragment;
+        return R.layout.layout_my_fragment;
     }
 
     @Override

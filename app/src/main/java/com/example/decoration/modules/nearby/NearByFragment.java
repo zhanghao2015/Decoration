@@ -1,4 +1,4 @@
-package com.example.decoration.module.main.ui;
+package com.example.decoration.modules.nearby;
 
 import android.view.View;
 
