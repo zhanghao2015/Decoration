@@ -73,9 +73,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void findView() {
         ViewUtils.inject(this);
-
         homeFragment = new HomeFragment();
-
         //加载PopupWindow的布局视图，并找出其中的按钮
         pwView = (RelativeLayout) getLayoutInflater().inflate(R.layout.layout_popupwindow,null);
         popupbtn_cancel = (Button) pwView.findViewById(R.id.popupbtn_cancel_main);
