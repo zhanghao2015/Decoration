@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".modules.main.ui.MainActivity" />
 
-        <activity android:name=".modules.main.ui.Welcome1Activity">
+        <activity android:name=".modules.main.ui.Welcome1Activity" android:theme="@style/AppTheme.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".modules.main.ui.Welcome2Activity" />
+        <activity android:name=".modules.main.ui.Welcome2Activity" android:theme="@style/AppTheme.Fullscreen" />
 
     </application>
 
