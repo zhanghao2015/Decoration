@@ -4,11 +4,60 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:id="@+id/titlebar_main"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/radiobtn_checked"
+        android:orientation="horizontal">
+
+
+        <RadioGroup
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:id="@+id/radio_group_titlebtn_nearby"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:background="@drawable/nearby_radiobtn_left_selector"
+                android:id="@+id/radiobtn_foreman"
+                android:button="@null"
+                android:textColor="@drawable/nearby_radiobtn_text_color"
+                android:text="附近工长"
+                android:textAlignment="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <RadioButton
+                android:background="@drawable/nearby_radiobtn_right_selector"
+                android:id="@+id/radiobtn_decorationsite"
+                android:button="@null"
+                android:textColor="@drawable/nearby_radiobtn_text_color"
+                android:text="直播工地"
+                android:textAlignment="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RadioGroup>
+
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/foremanbtn_nearby"
+            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/ic_nearby_b_foreman_list"
+            android:layout_width="25dp"
+            android:layout_height="25dp" />
+
+
+    </RelativeLayout>
+
+
     <TextView
-        android:layout_centerInParent="true"
-        android:textSize="20sp"
-        android:text="附近Fragment"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="附近Fragment"
+        android:textSize="20sp" />
 
 </RelativeLayout>

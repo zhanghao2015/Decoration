@@ -11,7 +11,7 @@ import com.example.decoration.base.BaseFragment;
 public class OwnerFragment extends BaseFragment{
     @Override
     protected int setViewID() {
-        return R.layout.layout_owener_fragment;
+        return R.layout.layout_owner_fragment;
     }
 
     @Override

@@ -5,79 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".modules.main.ui.MainActivity">
 
-    <RelativeLayout
-        android:id="@+id/titlebar_main"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/holo_orange_dark"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:id="@+id/locating_main"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="深圳"
-                android:textColor="@android:color/white"
-                android:textSize="15sp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="5dp"
-                android:src="@mipmap/ic_cost_change_arr_down" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="惠装"
-                android:textColor="@android:color/white"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:src="@mipmap/ic_home_title" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="省40%"
-                android:textColor="@android:color/white"
-                android:textSize="20sp" />
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/message_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:src="@mipmap/ic_home_message" />
-
-    </RelativeLayout>
 
     <FrameLayout
-        android:layout_below="@id/titlebar_main"
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
