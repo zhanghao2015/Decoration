@@ -6,7 +6,7 @@
 
 
     <RelativeLayout
-        android:id="@+id/titlebar_main"
+        android:id="@+id/titlebar_owner"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/radiobtn_checked"
