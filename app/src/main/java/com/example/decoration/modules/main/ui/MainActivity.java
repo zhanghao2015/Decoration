@@ -16,12 +16,11 @@ import android.widget.Toast;
 
 import com.example.decoration.R;
 import com.example.decoration.base.BaseActivity;
-
-import com.example.decoration.modules.beautifulImg.BeautifulEffectFragment;
-import com.example.decoration.modules.home.HomeFragment;
-import com.example.decoration.modules.hzone.OwenerFragment;
-import com.example.decoration.modules.myself.MyFragment;
-import com.example.decoration.modules.nearby.NearByFragment;
+import com.example.decoration.module.beautifuleffectfrag.ui.BeautifulEffectFragment;
+import com.example.decoration.module.homefrag.ui.HomeFragment;
+import com.example.decoration.module.myfrag.ui.MyFragment;
+import com.example.decoration.module.nearbyfrag.ui.NearByFragment;
+import com.example.decoration.module.ownerfrag.ui.OwnerFragment;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
@@ -45,7 +44,7 @@ public class MainActivity extends BaseActivity {
     private Button popupbtn_exit;
     private HomeFragment homeFragment;
     private NearByFragment nearByFragment;
-    private OwenerFragment owenerFragment;
+    private OwnerFragment ownerFragment;
     private BeautifulEffectFragment beautifulEffectFragment;
     private MyFragment myFragment;
     private Fragment lastFragment;
@@ -78,6 +77,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void findView() {
         ViewUtils.inject(this);
+        //加载PopupWindow的布局视图，并找出其中的按钮
         pwView = (RelativeLayout) getLayoutInflater().inflate(R.layout.layout_popupwindow, null);
         popupbtn_cancel = (Button) pwView.findViewById(R.id.popupbtn_cancel_main);
         popupbtn_exit = (Button) pwView.findViewById(R.id.popupbtn_exit_main);
@@ -87,21 +87,23 @@ public class MainActivity extends BaseActivity {
     protected void init() {
         //默认设置进入页面时点击了主页
         radiobtn_home.setChecked(true);
+        //初始化PopupWindow
         pw = new PopupWindow(pwView, ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT, false);
         homeFragment = new HomeFragment();
         nearByFragment = new NearByFragment();
-        owenerFragment = new OwenerFragment();
+        ownerFragment = new OwnerFragment();
         beautifulEffectFragment = new BeautifulEffectFragment();
         myFragment = new MyFragment();
+        //开启事务，并添加所需要的Fragment，将不需要显示的Fragment先隐藏，
+        //默认设置homeFragment为进入时界面
         transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.fragment_container,homeFragment);
-        //默认进入主界面处于主页Fragment
         lastFragment = homeFragment;
         transaction.add(R.id.fragment_container,nearByFragment);
         transaction.hide(nearByFragment);
-        transaction.add(R.id.fragment_container,owenerFragment);
-        transaction.hide(owenerFragment);
+        transaction.add(R.id.fragment_container, ownerFragment);
+        transaction.hide(ownerFragment);
         transaction.add(R.id.fragment_container,beautifulEffectFragment);
         transaction.hide(beautifulEffectFragment);
         transaction.add(R.id.fragment_container,myFragment);
@@ -111,7 +113,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initEvent() {
-        //定位按钮点击事件监听
+        //城市定位按钮点击事件监听
         locating_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,41 +136,34 @@ public class MainActivity extends BaseActivity {
                 switch (checkedId) {
                     case R.id.radiobtn_home_main:
                         Toast.makeText(MainActivity.this, "radiobtn_home_main", Toast.LENGTH_LONG).show();
-                        transaction = getSupportFragmentManager().beginTransaction();
-                        transaction.hide(lastFragment);
-                        transaction.show(homeFragment);
-                        lastFragment = homeFragment;
+                        showFragment(lastFragment,homeFragment);
                         break;
                     case R.id.radiobtn_nearby_main:
                         Toast.makeText(MainActivity.this, "radiobtn_nearby_main", Toast.LENGTH_LONG).show();
-                        transaction = getSupportFragmentManager().beginTransaction();
-                        transaction.hide(lastFragment);
-                        transaction.show(nearByFragment);
-                        lastFragment = nearByFragment;
+                        showFragment(lastFragment,nearByFragment);
                         break;
                     case R.id.radiobtn_owner_main:
                         Toast.makeText(MainActivity.this, "radiobtn_owner_main", Toast.LENGTH_LONG).show();
-                        transaction = getSupportFragmentManager().beginTransaction();
-                        transaction.hide(lastFragment);
-                        transaction.show(owenerFragment);
-                        lastFragment = owenerFragment;
+                        showFragment(lastFragment, ownerFragment);
                         break;
                     case R.id.radiobtn_beautifuleffect_main:
                         Toast.makeText(MainActivity.this, "radiobtn_beautifuleffect_main", Toast.LENGTH_LONG).show();
-                        transaction = getSupportFragmentManager().beginTransaction();
-                        transaction.hide(lastFragment);
-                        transaction.show(beautifulEffectFragment);
-                        lastFragment = beautifulEffectFragment;
+                        showFragment(lastFragment,beautifulEffectFragment);
                         break;
                     case R.id.radiobtn_my_main:
                         Toast.makeText(MainActivity.this, "radiobtn_my_main", Toast.LENGTH_LONG).show();
-                        transaction = getSupportFragmentManager().beginTransaction();
-                        transaction.hide(lastFragment);
-                        transaction.show(myFragment);
-                        lastFragment = myFragment;
+                        showFragment(lastFragment,myFragment);
                         break;
                 }
                 transaction.commit();
+            }
+
+            //替换显示的Fragment方法
+            private void showFragment(Fragment Fragment2Hide, Fragment Fragment2Show) {
+                transaction = getSupportFragmentManager().beginTransaction();
+                transaction.hide(Fragment2Hide);
+                transaction.show(Fragment2Show);
+                lastFragment = Fragment2Show;
             }
         });
         //给Popupwindow取消按钮设监听

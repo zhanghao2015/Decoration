@@ -1,4 +1,4 @@
-package com.example.decoration.modules.nearby;
+package com.example.decoration.module.ownerfrag.ui;
 
 import android.view.View;
 
@@ -8,10 +8,10 @@ import com.example.decoration.base.BaseFragment;
 /**
  * Created by Administrator on 2016/7/16.
  */
-public class NearByFragment extends BaseFragment{
+public class OwnerFragment extends BaseFragment{
     @Override
     protected int setViewID() {
-        return R.layout.layout_nearby_fragment;
+        return R.layout.layout_owener_fragment;
     }
 
     @Override
