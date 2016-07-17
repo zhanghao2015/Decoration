@@ -1,6 +1,7 @@
 package com.example.decoration;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.lidroid.xutils.DbUtils;
 import com.se7en.utils.SystemUtil;
@@ -10,12 +11,12 @@ import com.se7en.utils.SystemUtil;
  */
 public class MyApplication extends Application {
 
-
+    public static Context context;
 
     @Override
     public void onCreate() {
         super.onCreate();
         SystemUtil.setContext(this);
-
+        context=this;
     }
 }

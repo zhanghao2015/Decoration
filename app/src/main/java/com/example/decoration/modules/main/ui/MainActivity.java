@@ -49,6 +49,7 @@ public class MainActivity extends BaseActivity {
     private MyFragment myFragment;
     private Fragment lastFragment;
     private FragmentTransaction transaction;
+    public static MainActivity mainActivity;
 
     @Override
     public void onBackPressed() {
@@ -85,6 +86,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void init() {
+        mainActivity=this;
         //默认设置进入页面时点击了主页
         radiobtn_home.setChecked(true);
         //初始化PopupWindow

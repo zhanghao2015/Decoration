@@ -1,14 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+   >
 
-    <TextView
-        android:layout_centerInParent="true"
-        android:textSize="20sp"
-        android:text="我的Fragment"
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp">
+                    <ImageView
+                        android:id="@+id/myself_translate_iv1"
+                        android:src="@mipmap/account_head_bg1"
+                         style="@style/imagetranslate"/>
+                    <ImageView
+                        android:id="@+id/myself_translate_iv2"
+                        android:src="@mipmap/account_head_bg2"
+                        style="@style/imagetranslate" />
+                    <ImageView
+                        android:id="@+id/myself_translate_iv3"
+                        android:src="@mipmap/account_head_bg3"
+                        style="@style/imagetranslate"/>
+                </LinearLayout>
+                <ImageView
+                    android:layout_centerInParent="true"
+                    android:id="@+id/user_circular"
+                    android:src="@mipmap/account_head_defalut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/login_btn"
+                    android:background="@drawable/login_click_bg"
+                    android:textColor="#fff"
+                    android:layout_marginTop="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/user_circular"
+                    android:text="点击登录"/>
+            </RelativeLayout>
+
+           <LinearLayout
+               android:orientation="horizontal"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+               <!--<ImageView-->
+                   <!--android:src="@mipmap/ic_new_fragment_account_share"-->
+                   <!--android:layout_width="wrap_content"-->
+                   <!--android:layout_height="wrap_content" />-->
+
+
+           </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+    <ImageView
+        android:layout_alignParentRight="true"
+        android:layout_margin="20dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_main_activity_hzone"/>
 
 </RelativeLayout>
