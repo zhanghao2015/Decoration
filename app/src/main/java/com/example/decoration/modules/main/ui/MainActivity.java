@@ -106,6 +106,7 @@ public class MainActivity extends BaseActivity {
         transaction.add(R.id.fragment_container,myFragment);
         transaction.hide(myFragment);
         transaction.commit();
+        //
     }
 
     @Override
