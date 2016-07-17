@@ -32,11 +32,7 @@ public class MainActivity extends BaseActivity {
     @ViewInject(R.id.radio_group)
     private RadioGroup radio_Group;
 
-    @ViewInject(R.id.locating_main)
-    private View locating_btn;
 
-    @ViewInject(R.id.message_home)
-    private ImageView message_home;
 
     private PopupWindow pw;
     private RelativeLayout pwView;
@@ -77,8 +73,11 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void findView() {
         ViewUtils.inject(this);
+
+        homeFragment = new HomeFragment();
+
         //加载PopupWindow的布局视图，并找出其中的按钮
-        pwView = (RelativeLayout) getLayoutInflater().inflate(R.layout.layout_popupwindow, null);
+        pwView = (RelativeLayout) getLayoutInflater().inflate(R.layout.layout_popupwindow,null);
         popupbtn_cancel = (Button) pwView.findViewById(R.id.popupbtn_cancel_main);
         popupbtn_exit = (Button) pwView.findViewById(R.id.popupbtn_exit_main);
     }
@@ -90,7 +89,7 @@ public class MainActivity extends BaseActivity {
         //初始化PopupWindow
         pw = new PopupWindow(pwView, ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT, false);
-        homeFragment = new HomeFragment();
+
         nearByFragment = new NearByFragment();
         ownerFragment = new OwnerFragment();
         beautifulEffectFragment = new BeautifulEffectFragment();
@@ -113,22 +112,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initEvent() {
-        //城市定位按钮点击事件监听
-        locating_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "点了locating_btn", Toast.LENGTH_LONG).show();
-            }
-        });
-
-        //消息按钮点击事件监听
-        message_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "点了message_home", Toast.LENGTH_LONG).show();
-            }
-        });
-
         //radio_Group点击事件监听
         radio_Group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
