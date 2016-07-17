@@ -13,7 +13,8 @@ public class LocationCityActivity extends BaseActivity {
 
     @Override
     protected int setViewId() {
-        return R.layout.activity_location_city;
+//        return R.layout.activity_location_city;
+        return 0;
     }
 
     @Override
