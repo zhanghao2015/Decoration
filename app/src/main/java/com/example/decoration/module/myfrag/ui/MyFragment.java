@@ -193,6 +193,7 @@ public class MyFragment extends BaseFragment  {
     public void onDestroy() {
         isAlive = false;
         super.onDestroy();
+
     }
 
 
