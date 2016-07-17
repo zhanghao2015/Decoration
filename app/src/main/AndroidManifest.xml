@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".module.main.ui.Welcome2Activity" />
-        <activity android:name=".module.main.ui.LocationCityActivity"></activity>
+
     </application>
 
 </manifest>

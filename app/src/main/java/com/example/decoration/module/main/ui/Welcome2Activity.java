@@ -102,7 +102,7 @@ public class Welcome2Activity extends BaseActivity {
         entry_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Welcome2Activity.this,LocationCityActivity.class);
+                Intent intent=new Intent(Welcome2Activity.this,MainActivity.class);
                 startActivity(intent);
                 finish();
             }

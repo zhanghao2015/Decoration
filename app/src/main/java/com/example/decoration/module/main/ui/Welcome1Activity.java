@@ -1,6 +1,7 @@
 package com.example.decoration.module.main.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
@@ -16,8 +17,7 @@ public class Welcome1Activity extends BaseActivity {
     public final long SPLASH_LENGTH=2000;
     private int mcurrentVersion;
     private int mlastVersion;
-    private boolean isFisrtRun=false;//是否第一次运行
-
+    private SharedPreferences sp;
     @Override
     protected int setViewId() {
         return R.layout.activity_welcome1;
@@ -30,8 +30,7 @@ public class Welcome1Activity extends BaseActivity {
 
     @Override
     protected void init() {
-        //
-
+        sp=getSharedPreferences("count",MODE_PRIVATE);
         mcurrentVersion= SystemUtil.getSystemVersionCode();
         mlastVersion=SystemUtil.getSharedInt(Constant.VERSION_STRING,-1);
         Handler handler=new Handler();
@@ -40,10 +39,8 @@ public class Welcome1Activity extends BaseActivity {
             public void run() {
                 //如果是版本更新 或者第一次安装 进入viewpager欢迎界面
                 if(mcurrentVersion>mlastVersion||mlastVersion==-1){
-
-
-                    if(!isFisrtRun){
-                        isFisrtRun = SystemUtil.getSharedBoolean("isFirstRun", true);
+                    int count = sp.getInt("count", 0);
+                    if(count==0){
                         Intent intent=new Intent(Welcome1Activity.this,Welcome2Activity.class);
                         startActivity(intent);
                         finish();
@@ -53,12 +50,13 @@ public class Welcome1Activity extends BaseActivity {
                         finish();
                     }
 
+                    SharedPreferences.Editor edit = sp.edit();
+                    edit.putInt("count",++count);
+                    edit.commit();
                 }
 
             }
         },SPLASH_LENGTH);
-
-
 
     }
 
