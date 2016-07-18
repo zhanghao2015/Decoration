@@ -41,8 +41,10 @@ public class MyFragment extends BaseFragment {
     private View pw_kefu;
     private Button popupbtn_exit_main;
     private Button popupbtn_cancel_main;
+    private Button makeCold;
     private RelativeLayout myadvance;
     private RelativeLayout mcontackkefu;
+
     @Override
     protected int setViewID() {
         return R.layout.layout_my_fragment;
@@ -59,6 +61,7 @@ public class MyFragment extends BaseFragment {
         myadvance= (RelativeLayout) view.findViewById(R.id.myadvance);
         popupbtn_exit_main= (Button) pw_kefu.findViewById(R.id.popupbtn_exit_main);
         popupbtn_cancel_main= (Button) pw_kefu.findViewById(R.id.popupbtn_cancel_main);
+        makeCold= (Button) view.findViewById(R.id.makeCold);
     }
 
     protected void init() {
@@ -199,6 +202,14 @@ public class MyFragment extends BaseFragment {
             }
         });
 
+        makeCold.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(activity,WebViewActivity.class);
+                startActivity(intent);
+
+            }
+        });
     }
 
 

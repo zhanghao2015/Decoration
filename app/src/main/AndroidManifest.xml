@@ -35,6 +35,7 @@
         </activity>
 
         <activity android:name=".module.myfrag.myslef.ui.AdvanceActivity" />
+        <activity android:name=".module.myfrag.myslef.ui.WebViewActivity"/>
     </application>
 
 </manifest>
