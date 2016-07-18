@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -18,7 +17,7 @@ import com.example.decoration.R;
 import com.example.decoration.base.BaseActivity;
 import com.example.decoration.module.beautifuleffectfrag.ui.BeautifulEffectFragment;
 import com.example.decoration.module.homefrag.ui.HomeFragment;
-import com.example.decoration.module.myfrag.ui.MyFragment;
+import com.example.decoration.module.myfrag.myslef.ui.MyFragment;
 import com.example.decoration.module.nearbyfrag.ui.NearByFragment;
 import com.example.decoration.module.ownerfrag.ui.OwnerFragment;
 import com.lidroid.xutils.ViewUtils;
@@ -83,6 +82,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void init() {
+        //接受LoginActivity传过来的值
+
         mainActivity=this;
         //默认设置进入页面时点击了主页
         radiobtn_home.setChecked(true);
@@ -175,4 +176,6 @@ public class MainActivity extends BaseActivity {
     protected void loadDate() {
 
     }
+
+
 }

@@ -19,4 +19,6 @@ public class MyApplication extends Application {
         SystemUtil.setContext(this);
         context=this;
     }
+
+
 }

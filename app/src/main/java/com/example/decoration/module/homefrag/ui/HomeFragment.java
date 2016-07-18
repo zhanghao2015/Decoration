@@ -35,6 +35,7 @@ public class HomeFragment extends BaseFragment {
     private RadioButton btn3_virepager;
     private RadioButton btn4_virepager;
     private boolean isPlay=false;
+    private List<View> vpData;
 
 
     @Override
@@ -75,15 +76,20 @@ public class HomeFragment extends BaseFragment {
             }
         };
         //初始化Viewpager加载页面和数据
-        List<View> vpData = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
-            View view = getActivity().getLayoutInflater().inflate(R.layout.layout_viewpager, null);
-            vpData.add(view);
-        }
+        vpData = new ArrayList<>();
+        setImageView(R.mipmap.product_ad_top);
+        setImageView(R.mipmap.product_ad_bottom);
+        setImageView(R.mipmap.product_ad_top);
+        setImageView(R.mipmap.product_ad_bottom);
+
+
+//        for (int i = 0; i < 4; i++) {
+//            View view = getActivity().getLayoutInflater().inflate(R.layout.layout_viewpager, null);
+//            vpData.add(view);
+//        }
         Log.d("Dream", "vpData长度：" + vpData.size());
         homeFragPagerAdapter = new HomeFragPagerAdapter(vpData);
         viewpager_homefrag.setAdapter(homeFragPagerAdapter);
-
         //默认viewpager下面小点在第一个
         btn1_virepager.setChecked(true);
 
@@ -102,6 +108,13 @@ public class HomeFragment extends BaseFragment {
                 }
             }
         }).start();
+    }
+
+    private void setImageView(int resId) {
+        ImageView imageView=new ImageView(getActivity());
+        imageView.setImageResource(resId);
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+        vpData.add(imageView);
     }
 
     @Override

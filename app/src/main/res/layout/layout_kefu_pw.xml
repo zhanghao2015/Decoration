@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:background="@drawable/popupwindow_shape_main"
+        android:layout_width="281dp"
+        android:layout_height="140dp">
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/title_popupwindow_main"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+            android:text="确定要联系客服吗？"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_alignLeft="@+id/title_popupwindow_main"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+
+                android:id="@+id/kefu"
+                android:textSize="16sp"
+                android:text="客服电话："
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_alignRight="@+id/kefu"
+                android:id="@+id/phonte_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4006070035"/>
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:id="@+id/popbtn_container_main"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:background="@drawable/popup_button_selector"
+                android:text="取消"
+                android:id="@+id/popupbtn_cancel_main"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_gravity="center_vertical"
+                android:background="#ccc"
+                android:layout_width="1dp"
+                android:layout_height="30dp"/>
+            <Button
+                android:background="@drawable/popup_button_selector"
+                android:textColor="@color/radiobtn_checked"
+                android:text="确定"
+                android:id="@+id/popupbtn_exit_main"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_alignTop="@id/popbtn_container_main"
+            android:background="@color/radiobtn_checked"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -36,16 +37,20 @@
         android:layout_width="match_parent"
         android:layout_height="80dp">
         <EditText
+            android:inputType="phone"
             android:id="@+id/phone_et"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="请输入您的手机号码"/>
         <TextView
+            android:inputType="number"
+
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:clickable="true"
             android:textSize="18sp"
+            android:id="@+id/postCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="发送验证码"/>

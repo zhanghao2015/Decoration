@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#FF6C38">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="意见反馈"
+                android:textColor="#fff"
+                android:textSize="20sp" />
+        </RelativeLayout>
+
+        <EditText
+            android:gravity="top"
+            android:hint="请留下你的宝贵意见"
+            android:layout_width="match_parent"
+            android:layout_height="150dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="联系方式 （必填）"
+                android:textStyle="bold"/>
+            <EditText
+                android:hint="请留下电话"
+                android:textSize="14sp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/addPhoto_iv"
+            android:onClick="addPhoto"
+            android:src="@mipmap/ic_photo_add"
+            android:layout_margin="10dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+    </LinearLayout>
+
+
+    <Button
+        android:layout_alignParentBottom="true"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        android:text="提交"
+        android:background="#FF6C38"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+</RelativeLayout>
