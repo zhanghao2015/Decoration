@@ -1,22 +1,20 @@
 package com.example.decoration.module.homefrag.ui;
 
-import android.app.FragmentTransaction;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.decoration.R;
 import com.example.decoration.base.BaseFragment;
-import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.view.annotation.ViewInject;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +22,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/7/16.
  */
-public class HomeFragment extends BaseFragment {
+public class HomeFragment2 extends BaseFragment {
     private Handler handler;
     private View locating_btn;
     private ImageView message_homefrag;
@@ -34,13 +32,12 @@ public class HomeFragment extends BaseFragment {
     private RadioButton btn2_virepager;
     private RadioButton btn3_virepager;
     private RadioButton btn4_virepager;
-    private boolean isPlay=false;
-    private List<View> vpData;
+    private boolean isPlay=true;
 
 
     @Override
     protected int setViewID() {
-        return R.layout.layout_home_fragment;
+        return R.layout.layout_home_fragment_2;
     }
 
     @Override
@@ -56,6 +53,7 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     protected void init() {
+
         handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
@@ -76,27 +74,28 @@ public class HomeFragment extends BaseFragment {
             }
         };
         //初始化Viewpager加载页面和数据
-        vpData = new ArrayList<>();
-        setImageView(R.mipmap.product_ad_top);
-        setImageView(R.mipmap.product_ad_bottom);
-        setImageView(R.mipmap.product_ad_top);
-        setImageView(R.mipmap.product_ad_bottom);
-
-
-//        for (int i = 0; i < 4; i++) {
+        List<View> vpData = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
 //            View view = getActivity().getLayoutInflater().inflate(R.layout.layout_viewpager, null);
-//            vpData.add(view);
-//        }
+            ImageView view = new ImageView(getActivity());
+            ViewGroup.LayoutParams params = new ViewPager.LayoutParams();
+            params.height = ViewGroup.LayoutParams.MATCH_PARENT;
+            params.width = ViewGroup.LayoutParams.MATCH_PARENT;
+            view.setLayoutParams(params);
+            view.setScaleType(ImageView.ScaleType.FIT_XY);
+            view.setImageResource(R.mipmap.product_ad_top);
+            vpData.add(view);
+        }
         Log.d("Dream", "vpData长度：" + vpData.size());
         homeFragPagerAdapter = new HomeFragPagerAdapter(vpData);
         viewpager_homefrag.setAdapter(homeFragPagerAdapter);
+
         //默认viewpager下面小点在第一个
         btn1_virepager.setChecked(true);
 
         //viewpager自动轮播方法
         new Thread(new Runnable() {
             int count = 1;
-
             @Override
             public void run() {
                 while (isPlay) {
@@ -110,13 +109,6 @@ public class HomeFragment extends BaseFragment {
         }).start();
     }
 
-    private void setImageView(int resId) {
-        ImageView imageView=new ImageView(getActivity());
-        imageView.setImageResource(resId);
-        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        vpData.add(imageView);
-    }
-
     @Override
     protected void initEvent() {
 
@@ -125,6 +117,7 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(), "点了locating_btn", Toast.LENGTH_LONG).show();
+                EventBus.getDefault().post("to1");
             }
         });
 
@@ -135,7 +128,6 @@ public class HomeFragment extends BaseFragment {
                 Toast.makeText(getActivity(), "点了message_home", Toast.LENGTH_LONG).show();
             }
         });
-
 
     }
 

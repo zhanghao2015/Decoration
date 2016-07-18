@@ -14,13 +14,14 @@
         <LinearLayout
             android:id="@+id/locating_homefrag"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
             android:orientation="horizontal">
 
             <TextView
+                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="深圳"
@@ -142,22 +143,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+                android:id="@+id/advertise_left_homefrag_homefrag"
                 android:layout_weight="40"
                 android:src="@mipmap/ic_medium_icon_b_rab"
                 android:scaleType="fitXY"
                 android:layout_width="0dp"
-                android:layout_height="260dp" />
+                android:layout_height="240dp" />
             <LinearLayout
                 android:layout_weight="1"
                 android:orientation="horizontal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"/>
             <ImageView
+                android:id="@+id/advertise_right_homefrag_homefrag"
                 android:layout_weight="40"
                 android:src="@mipmap/ic_medium_icon_b_foreman"
                 android:scaleType="fitXY"
                 android:layout_width="0dp"
-                android:layout_height="260dp" />
+                android:layout_height="240dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -166,7 +169,7 @@
             android:layout_marginTop="5dp"
             android:layout_below="@id/advertise_homefrag"
             android:layout_width="match_parent"
-            android:layout_height="160dp">
+            android:layout_height="180dp">
             <LinearLayout
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
@@ -201,9 +204,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content">
                     <ImageView
-                        android:src="@mipmap/account_worksite_full_star"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:src="@mipmap/effectimage"
+                        android:id="@+id/effect_image"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp" />
                     <TextView
                         android:layout_marginTop="5dp"
                         android:text="效果图"
@@ -218,8 +222,8 @@
                     android:layout_height="wrap_content">
                     <ImageView
                         android:src="@mipmap/account_worksite_full_star"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_width="30dp"
+                        android:layout_height="30dp" />
                     <TextView
                         android:layout_marginTop="5dp"
                         android:text="装修宝典"
@@ -235,8 +239,8 @@
                     android:layout_height="wrap_content">
                     <ImageView
                         android:src="@mipmap/account_worksite_full_star"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"  />
                     <TextView
                         android:layout_marginTop="5dp"
                         android:text="写日记"
@@ -258,8 +262,8 @@
                     android:layout_height="wrap_content">
                     <ImageView
                         android:src="@mipmap/account_worksite_full_star"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"  />
                     <TextView
                         android:layout_marginTop="5dp"
                         android:text="精选案例"
@@ -274,8 +278,8 @@
                     android:layout_height="wrap_content">
                     <ImageView
                         android:src="@mipmap/account_worksite_full_star"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"  />
                     <TextView
                         android:layout_marginTop="5dp"
                         android:text="我的收藏"
@@ -291,8 +295,8 @@
                     android:layout_height="wrap_content">
                     <ImageView
                         android:src="@mipmap/account_worksite_full_star"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"  />
                     <TextView
                         android:layout_marginTop="5dp"
                         android:text="装修基金"

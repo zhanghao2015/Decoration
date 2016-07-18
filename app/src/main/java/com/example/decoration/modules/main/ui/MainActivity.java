@@ -16,12 +16,16 @@ import android.widget.Toast;
 import com.example.decoration.R;
 import com.example.decoration.base.BaseActivity;
 import com.example.decoration.module.beautifuleffectfrag.ui.BeautifulEffectFragment;
-import com.example.decoration.module.homefrag.ui.HomeFragment;
-import com.example.decoration.module.myfrag.myslef.ui.MyFragment;
+import com.example.decoration.module.homefrag.ui.HomeFragment1;
+import com.example.decoration.module.homefrag.ui.HomeFragment2;
+import com.example.decoration.module.myfrag.ui.MyFragment;
 import com.example.decoration.module.nearbyfrag.ui.NearByFragment;
 import com.example.decoration.module.ownerfrag.ui.OwnerFragment;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 public class MainActivity extends BaseActivity {
 
@@ -30,14 +34,12 @@ public class MainActivity extends BaseActivity {
 
     @ViewInject(R.id.radio_group)
     private RadioGroup radio_Group;
-
-
-
     private PopupWindow pw;
     private RelativeLayout pwView;
     private Button popupbtn_cancel;
     private Button popupbtn_exit;
-    private HomeFragment homeFragment;
+    private HomeFragment2 homeFragment2;
+    private HomeFragment1 homeFragment1;
     private NearByFragment nearByFragment;
     private OwnerFragment ownerFragment;
     private BeautifulEffectFragment beautifulEffectFragment;
@@ -73,7 +75,9 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void findView() {
         ViewUtils.inject(this);
-        homeFragment = new HomeFragment();
+        homeFragment2 = new HomeFragment2();
+        homeFragment1 = new HomeFragment1();
+
         //加载PopupWindow的布局视图，并找出其中的按钮
         pwView = (RelativeLayout) getLayoutInflater().inflate(R.layout.layout_popupwindow,null);
         popupbtn_cancel = (Button) pwView.findViewById(R.id.popupbtn_cancel_main);
@@ -82,8 +86,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void init() {
-        //接受LoginActivity传过来的值
-
+        EventBus.getDefault().register(this);
         mainActivity=this;
         //默认设置进入页面时点击了主页
         radiobtn_home.setChecked(true);
@@ -96,10 +99,12 @@ public class MainActivity extends BaseActivity {
         beautifulEffectFragment = new BeautifulEffectFragment();
         myFragment = new MyFragment();
         //开启事务，并添加所需要的Fragment，将不需要显示的Fragment先隐藏，
-        //默认设置homeFragment为进入时界面
+        //默认设置homeFragment2为进入时界面
         transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.fragment_container,homeFragment);
-        lastFragment = homeFragment;
+        transaction.add(R.id.fragment_container,homeFragment2);
+        transaction.add(R.id.fragment_container,homeFragment1);
+        transaction.hide(homeFragment1);
+        lastFragment = homeFragment2;
         transaction.add(R.id.fragment_container,nearByFragment);
         transaction.hide(nearByFragment);
         transaction.add(R.id.fragment_container, ownerFragment);
@@ -109,7 +114,25 @@ public class MainActivity extends BaseActivity {
         transaction.add(R.id.fragment_container,myFragment);
         transaction.hide(myFragment);
         transaction.commit();
-        //
+
+    }
+    //设定一个flag值，用来判断当前主页fragment显示的是1布局还是2布局
+    boolean flag = true;
+    @Subscribe
+    public void onEvent(String str){
+        transaction = getSupportFragmentManager().beginTransaction();
+        if("to1".equals(str)){
+            flag = false;
+            transaction.hide(lastFragment);
+            transaction.show(homeFragment1);
+            lastFragment = homeFragment1;
+        }else if("to2".equals(str)){
+            flag = true;
+            transaction.hide(lastFragment);
+            transaction.show(homeFragment2);
+            lastFragment = homeFragment2;
+        }
+        transaction.commit();
     }
 
     @Override
@@ -121,7 +144,11 @@ public class MainActivity extends BaseActivity {
                 switch (checkedId) {
                     case R.id.radiobtn_home_main:
                         Toast.makeText(MainActivity.this, "radiobtn_home_main", Toast.LENGTH_LONG).show();
-                        showFragment(lastFragment,homeFragment);
+                        if (flag) {
+                            showFragment(lastFragment,homeFragment2);
+                        }else{
+                            showFragment(lastFragment,homeFragment1);
+                        }
                         break;
                     case R.id.radiobtn_nearby_main:
                         Toast.makeText(MainActivity.this, "radiobtn_nearby_main", Toast.LENGTH_LONG).show();
@@ -177,5 +204,9 @@ public class MainActivity extends BaseActivity {
 
     }
 
-
+    @Override
+    protected void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
+    }
 }
