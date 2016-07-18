@@ -34,6 +34,7 @@ public class HomeFragment extends BaseFragment {
     private RadioButton btn2_virepager;
     private RadioButton btn3_virepager;
     private RadioButton btn4_virepager;
+    private boolean isPlay=false;
 
 
     @Override
@@ -92,7 +93,7 @@ public class HomeFragment extends BaseFragment {
 
             @Override
             public void run() {
-                while (true) {
+                while (isPlay) {
                     SystemClock.sleep(3000);
                     Message msg = new Message();
                     msg.what = 1;
@@ -128,5 +129,11 @@ public class HomeFragment extends BaseFragment {
     @Override
     protected void loadDate() {
 
+    }
+
+    @Override
+    public void onDestroy() {
+        isPlay=false;
+        super.onDestroy();
     }
 }
