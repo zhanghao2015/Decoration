@@ -1,4 +1,4 @@
-package com.example.decoration.module.myfrag.myslef.ui;
+package com.example.decoration.module.myfrag.myself.ui;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,7 +14,7 @@ import com.example.decoration.R;
 import com.example.decoration.base.BaseActivity;
 import com.example.decoration.base.NetCallback;
 import com.example.decoration.common.net.HttpNet;
-import com.example.decoration.module.myfrag.myslef.bean.LoginInfo;
+import com.example.decoration.module.myfrag.myself.bean.LoginInfo;
 import com.google.gson.Gson;
 
 import java.util.Hashtable;

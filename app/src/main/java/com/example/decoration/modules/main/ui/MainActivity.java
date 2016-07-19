@@ -2,6 +2,7 @@ package com.example.decoration.modules.main.ui;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +17,11 @@ import android.widget.Toast;
 import com.example.decoration.R;
 import com.example.decoration.base.BaseActivity;
 import com.example.decoration.module.beautifuleffectfrag.ui.BeautifulEffectFragment;
+import com.example.decoration.module.homefrag.bean.IndexBean;
+import com.example.decoration.module.homefrag.dao.IndexDao;
 import com.example.decoration.module.homefrag.ui.HomeFragment1;
 import com.example.decoration.module.homefrag.ui.HomeFragment2;
-import com.example.decoration.module.myfrag.ui.MyFragment;
+import com.example.decoration.module.myfrag.myself.ui.MyFragment;
 import com.example.decoration.module.nearbyfrag.ui.NearByFragment;
 import com.example.decoration.module.ownerfrag.ui.OwnerFragment;
 import com.lidroid.xutils.ViewUtils;
@@ -47,7 +50,10 @@ public class MainActivity extends BaseActivity {
     private Fragment lastFragment;
     private FragmentTransaction transaction;
     public static MainActivity mainActivity;
+    private IndexBean indexBean;
 
+
+    //退出鲜果
     @Override
     public void onBackPressed() {
         if (pw.isShowing()) {
@@ -100,11 +106,11 @@ public class MainActivity extends BaseActivity {
         myFragment = new MyFragment();
         //开启事务，并添加所需要的Fragment，将不需要显示的Fragment先隐藏，
         //默认设置homeFragment2为进入时界面
+        lastFragment = homeFragment2;
         transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.fragment_container,homeFragment2);
         transaction.add(R.id.fragment_container,homeFragment1);
         transaction.hide(homeFragment1);
-        lastFragment = homeFragment2;
         transaction.add(R.id.fragment_container,nearByFragment);
         transaction.hide(nearByFragment);
         transaction.add(R.id.fragment_container, ownerFragment);
@@ -114,7 +120,6 @@ public class MainActivity extends BaseActivity {
         transaction.add(R.id.fragment_container,myFragment);
         transaction.hide(myFragment);
         transaction.commit();
-
     }
     //设定一个flag值，用来判断当前主页fragment显示的是1布局还是2布局
     boolean flag = true;
@@ -122,11 +127,13 @@ public class MainActivity extends BaseActivity {
     public void onEvent(String str){
         transaction = getSupportFragmentManager().beginTransaction();
         if("to1".equals(str)){
+            IndexDao.getIndexBean("16");
             flag = false;
             transaction.hide(lastFragment);
             transaction.show(homeFragment1);
             lastFragment = homeFragment1;
         }else if("to2".equals(str)){
+            IndexDao.getIndexBean("100");
             flag = true;
             transaction.hide(lastFragment);
             transaction.show(homeFragment2);
@@ -199,8 +206,30 @@ public class MainActivity extends BaseActivity {
 
     }
 
+    @Subscribe
+    public void onLoadLayout(IndexBean indexBean){
+        String layoutID = indexBean.getData().getLayout();
+        transaction = getSupportFragmentManager().beginTransaction();
+        if("1".equals(layoutID)){
+            flag = false;
+            transaction.hide(lastFragment);
+            transaction.show(homeFragment1);
+            lastFragment = homeFragment1;
+            Log.d("huizhuang","主页面加载了布局1");
+        }else if("2".equals(layoutID)){
+            flag = true;
+            transaction.hide(lastFragment);
+            transaction.show(homeFragment2);
+            lastFragment = homeFragment2;
+            Log.d("huizhuang","主页面加载了布局2");
+        }
+        transaction.commit();
+    }
+
+
     @Override
     protected void loadDate() {
+        IndexDao.getIndexBean("100");
 
     }
 

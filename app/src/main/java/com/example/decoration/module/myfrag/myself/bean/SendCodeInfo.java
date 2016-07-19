@@ -1,4 +1,4 @@
-package com.example.decoration.module.myfrag.myslef.bean;
+package com.example.decoration.module.myfrag.myself.bean;
 
 import java.util.List;
 

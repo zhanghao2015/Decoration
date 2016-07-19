@@ -1,4 +1,4 @@
-package com.example.decoration.module.myfrag.myslef.ui;
+package com.example.decoration.module.myfrag.myself.ui;
 
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;

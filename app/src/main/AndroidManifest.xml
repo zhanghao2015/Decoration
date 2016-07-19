@@ -30,12 +30,12 @@
         <activity
             android:name=".modules.main.ui.Welcome2Activity"
             android:theme="@style/AppTheme.Fullscreen" />
-        <activity android:name=".module.myfrag.myslef.ui.LoginActivity">
+        <activity android:name=".module.myfrag.myself.ui.LoginActivity">
 
         </activity>
 
-        <activity android:name=".module.myfrag.myslef.ui.AdvanceActivity" />
-        <activity android:name=".module.myfrag.myslef.ui.WebViewActivity"/>
+        <activity android:name=".module.myfrag.myself.ui.AdvanceActivity" />
+        <activity android:name=".module.myfrag.myself.ui.WebViewActivity"/>
     </application>
 
 </manifest>
