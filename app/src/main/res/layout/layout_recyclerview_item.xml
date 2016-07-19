@@ -8,5 +8,6 @@
         android:id="@+id/imageview_in_recommandfrag"
         android:src="@mipmap/ic_layout_empty"
         android:layout_width="match_parent"
+        android:scaleType="fitXY"
         android:layout_height="160dp" />
 </LinearLayout>

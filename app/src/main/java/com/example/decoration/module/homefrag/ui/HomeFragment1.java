@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
@@ -118,14 +119,7 @@ public class HomeFragment1 extends BaseFragment {
         //初始化Viewpager加载页面和数据
         vpData = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
-//            View view = getActivity().getLayoutInflater().inflate(R.layout.layout_viewpager, null);
-            ImageView view = new ImageView(getActivity());
-            ViewGroup.LayoutParams params = new ViewPager.LayoutParams();
-            params.height = ViewGroup.LayoutParams.MATCH_PARENT;
-            params.width = ViewGroup.LayoutParams.MATCH_PARENT;
-            view.setLayoutParams(params);
-            view.setScaleType(ImageView.ScaleType.FIT_XY);
-            view.setImageResource(R.mipmap.product_ad_top);
+            ImageView view = createImageView();
             vpData.add(view);
         }
         Log.d("Dream", "vpData长度：" + vpData.size());
@@ -157,6 +151,18 @@ public class HomeFragment1 extends BaseFragment {
         transaction.add(R.id.fragment_inner_container, recommandFragment);
         transaction.commit();
 
+    }
+
+    @NonNull
+    private ImageView createImageView() {
+        ImageView view = new ImageView(getActivity());
+        ViewGroup.LayoutParams params = new ViewPager.LayoutParams();
+        params.height = ViewGroup.LayoutParams.MATCH_PARENT;
+        params.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        view.setLayoutParams(params);
+        view.setScaleType(ImageView.ScaleType.FIT_XY);
+        view.setImageResource(R.mipmap.product_ad_top);
+        return view;
     }
 
     @Override
@@ -203,8 +209,17 @@ public class HomeFragment1 extends BaseFragment {
         IndexBean indexBean = loadLayout1.getIndexBean();
         String layoutID = indexBean.getData().getLayout();
         if ("1".equals(layoutID)) {
-            //加载轮播图
             List<IndexBean.DataBean.JiaodiantuBean> jiaodiantu = indexBean.getData().getJiaodiantu();
+            //判断传回的视图个数与ViewPager中的视图个数是否相等，并使其二者包含视图个数相等
+            if (jiaodiantu.size() > vpData.size()) {
+                int size = jiaodiantu.size() - vpData.size();
+                for (int i = 0; i < size; i++) {
+                    ImageView imageView = createImageView();
+                    vpData.add(imageView);
+                    homeFragPagerAdapter.notifyDataSetChanged();
+                }
+            }
+            //加载轮播图
             for (int i = 0; i < jiaodiantu.size(); i++) {
                 Picasso.with(getActivity())
                         .load(jiaodiantu.get(i).getUrl())
@@ -230,15 +245,15 @@ public class HomeFragment1 extends BaseFragment {
                     break;
                 case 1:
                     Picasso.with(getActivity()).load(url).into(jingxuanfenlei2);
-                    tv_jingxuanfenlei1.setText(title);
+                    tv_jingxuanfenlei2.setText(title);
                     break;
                 case 2:
                     Picasso.with(getActivity()).load(url).into(jingxuanfenlei3);
-                    tv_jingxuanfenlei1.setText(title);
+                    tv_jingxuanfenlei3.setText(title);
                     break;
                 case 3:
                     Picasso.with(getActivity()).load(url).into(jingxuanfenlei4);
-                    tv_jingxuanfenlei1.setText(title);
+                    tv_jingxuanfenlei4.setText(title);
                     break;
             }
             Log.d("huizhuang", "加载精选分类:" + url);
