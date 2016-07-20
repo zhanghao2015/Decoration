@@ -15,9 +15,9 @@ public class Constant {
     public static final String  APPINDEX_URL = "http://hzapi.huizhuang.com/common/Home/getAppIndexWindow.do";
     //主页数据请求:
     public static final String  INDEX_URL = "http://hzapi.huizhuang.com/common/Home/index.do";
-    //登录验证请求接口
+    //登录验证请求接口:
     public static final String  LOGIN_URL = "http://hzapi.huizhuang.com/user/index/login.do";
-    //请求发送验证码接口
+    //请求发送验证码接口:
     public static final String  SENDCODE_URL = "http://hzapi.huizhuang.com/user/index/sendcode.do";
 
 

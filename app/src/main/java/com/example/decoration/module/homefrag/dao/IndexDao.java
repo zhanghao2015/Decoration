@@ -6,6 +6,7 @@ import com.example.decoration.base.NetCallback;
 import com.example.decoration.common.constant.Constant;
 import com.example.decoration.common.net.HttpNet;
 import com.example.decoration.module.homefrag.bean.IndexBean;
+import com.example.decoration.module.homefrag.ui.LoadLatestFrag;
 import com.example.decoration.module.homefrag.ui.LoadLayout1;
 import com.example.decoration.module.homefrag.ui.LoadLayout2;
 import com.example.decoration.module.homefrag.ui.LoadRecommandFrag;
@@ -58,6 +59,7 @@ public class IndexDao {
                     EventBus.getDefault().post(new LoadLayout2(indexBean, "2"));
                     EventBus.getDefault().post(new LoadLayout1(indexBean, "1"));
                     EventBus.getDefault().post(new LoadRecommandFrag(indexBean, "3"));
+                    EventBus.getDefault().post(new LoadLatestFrag(indexBean, "4"));
                 }
             }
 

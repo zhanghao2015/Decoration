@@ -12,4 +12,11 @@ public class ExampleUnitTest {
     public void addition_isCorrect() throws Exception {
         assertEquals(4, 2 + 2);
     }
+
+    @Test
+    public void nowTime() throws Exception {
+        long currentTimeMillis = System.currentTimeMillis();
+        assertEquals(currentTimeMillis, 2 + 2);
+    }
+
 }

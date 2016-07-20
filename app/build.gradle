@@ -18,9 +18,10 @@ android {
         }
     }
 }
-repositories {
-    jcenter()
-}
+    repositories {
+         jcenter()
+    }
+
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -32,7 +33,7 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.pkmmte.view:circularimageview:1.1'
     compile 'com.jakewharton:butterknife:8.2.1'
+    compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.android.support:recyclerview-v7:23+'
     compile 'com.yqritc:recyclerview-flexibledivider:1.4.0'
-    compile 'org.greenrobot:eventbus:3.0.0'
 }

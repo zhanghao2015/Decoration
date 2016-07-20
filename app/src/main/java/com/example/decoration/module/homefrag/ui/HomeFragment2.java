@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -69,6 +70,8 @@ public class HomeFragment2 extends BaseFragment {
 
     @Override
     protected void findView(View view) {
+        //轮播图小点RadioGroup容器
+        RadioGroup viewpager_container = (RadioGroup) view.findViewById(R.id.btn_viewpager_container);
         locating_btn = view.findViewById(R.id.locating_homefrag);
         message_homefrag = (ImageView) view.findViewById(R.id.message_homefrag);
         viewpager_homefrag = (ViewPager) view.findViewById(R.id.viewpager_homefrag);

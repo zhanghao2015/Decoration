@@ -17,7 +17,7 @@
             android:layout_height="wrap_content" />
 
         <TextView
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="15dp"
             android:layout_marginTop="20dp"
             android:layout_below="@id/title_popupwindow_main"
             android:textSize="16sp"

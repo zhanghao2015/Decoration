@@ -5,4 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="radiobtn_checked">#FF6C38</color>
     <color name="radiobtn_unchecked">#6D7173</color>
+    <color name="colorRed">#FF0606</color>
+    <color name="background">#F7F7F7</color>
+    <color name="slightGray">#F2F2F2</color>
 </resources>

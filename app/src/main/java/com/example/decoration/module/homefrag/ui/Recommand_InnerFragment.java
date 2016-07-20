@@ -17,6 +17,7 @@ import android.widget.ListView;
 import com.example.decoration.R;
 import com.example.decoration.base.BaseFragment;
 import com.example.decoration.module.homefrag.bean.IndexBean;
+import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 import com.yqritc.recyclerviewflexibledivider.VerticalDividerItemDecoration;
 
 import org.greenrobot.eventbus.EventBus;
@@ -31,7 +32,7 @@ import java.util.List;
 public class Recommand_InnerFragment extends BaseFragment {
 
 
-    private RecyclerView recyclerView;
+    private MyRecyclerView recyclerView;
     private MyAdapter mAdapter;
     private List<String> data;
 
@@ -42,7 +43,7 @@ public class Recommand_InnerFragment extends BaseFragment {
 
     @Override
     protected void findView(View view) {
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        recyclerView = (MyRecyclerView) view.findViewById(R.id.recyclerView_recommand);
 
     }
 
@@ -51,10 +52,10 @@ public class Recommand_InnerFragment extends BaseFragment {
         //加载竖向线性布局管理器
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),
                 LinearLayoutManager.VERTICAL, false));
-        //设置间距
-        recyclerView.addItemDecoration(new VerticalDividerItemDecoration.Builder(getActivity())
+        //设置横向分割线
+        recyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(getActivity())
                 .color(android.R.color.transparent)
-                .size(10)
+                .size(4)
                 .build());
 
         data = new ArrayList<>();
@@ -64,6 +65,7 @@ public class Recommand_InnerFragment extends BaseFragment {
 
     @Override
     protected void initEvent() {
+
 
     }
 

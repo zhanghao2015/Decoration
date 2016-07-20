@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants"
     android:orientation="vertical">
 
 
@@ -77,12 +78,11 @@
             android:src="@mipmap/ic_home_message" />
     </RelativeLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <com.example.decoration.module.homefrag.ui.MyNestedScrollView
+        android:scrollbars="none"
         android:layout_below="@id/titlebar_homefrag"
-        android:scrollbars="none">
-
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -288,7 +288,6 @@
                     android:background="@android:color/white"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
-
                     <RadioButton
                         android:id="@+id/ic_home_btn_recommand"
                         android:layout_width="0dp"
@@ -314,35 +313,34 @@
                         android:textColor="@drawable/ic_home_textcolor_selector" />
                 </RadioGroup>
             </LinearLayout>
-
             <LinearLayout
                 android:id="@+id/recommand_latest_bar"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
                 android:layout_below="@id/togglebtn_container"
-                android:orientation="horizontal">
-
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="1dp">
                 <ImageView
                     android:id="@+id/togglebtn_recommand"
+                    android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="1" />
-
+                    android:layout_height="1dp"/>
                 <ImageView
                     android:id="@+id/togglebtn_latest"
+                    android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="1" />
+                    android:layout_height="1dp"/>
             </LinearLayout>
 
             <FrameLayout
                 android:id="@+id/fragment_inner_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:background="@color/slightGray"
+                android:layout_marginTop="5dp"
                 android:layout_below="@id/recommand_latest_bar"
-                android:layout_marginTop="5dp" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
         </RelativeLayout>
-    </ScrollView>
+    </com.example.decoration.module.homefrag.ui.MyNestedScrollView>
+
 
 
 </RelativeLayout>

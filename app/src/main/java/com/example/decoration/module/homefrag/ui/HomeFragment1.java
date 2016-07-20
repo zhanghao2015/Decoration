@@ -7,6 +7,7 @@ import android.os.Message;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -58,6 +59,10 @@ public class HomeFragment1 extends BaseFragment {
     private TextView tv_jingxuanfenlei2;
     private TextView tv_jingxuanfenlei3;
     private TextView tv_jingxuanfenlei4;
+    private Recommand_InnerFragment recommandFragment;
+    private FragmentTransaction transaction;
+    private LatestToday_InnerFragment latestToday_innerFragment;
+    private Fragment lastInnerFrag;
 
 
     @Override
@@ -94,7 +99,7 @@ public class HomeFragment1 extends BaseFragment {
 
     @Override
     protected void init() {
-        //初始化ic_home_btn_recommand
+        //初始化ic_home_btn_recommand(为你推荐Button)
         ic_home_btn_recommand.setChecked(true);
         togglebtn_recommand.setBackgroundColor(Color.RED);
         handler = new Handler() {
@@ -146,9 +151,13 @@ public class HomeFragment1 extends BaseFragment {
         }).start();
 
         //加载内部fragment
-        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        Recommand_InnerFragment recommandFragment = new Recommand_InnerFragment();
+        transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        recommandFragment = new Recommand_InnerFragment();
+        latestToday_innerFragment = new LatestToday_InnerFragment();
+        lastInnerFrag = recommandFragment;
         transaction.add(R.id.fragment_inner_container, recommandFragment);
+        transaction.add(R.id.fragment_inner_container, latestToday_innerFragment);
+        transaction.hide(latestToday_innerFragment);
         transaction.commit();
 
     }
@@ -185,15 +194,31 @@ public class HomeFragment1 extends BaseFragment {
             }
         });
 
+        //为你推荐，今日最新按键点击监听
         togglebtn_group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
+                //点击为你推荐
                 if (checkedId == R.id.ic_home_btn_recommand) {
-                    togglebtn_latest.setBackgroundColor(Color.TRANSPARENT);
-                    togglebtn_recommand.setBackgroundColor(Color.RED);
+                        togglebtn_latest.setBackgroundColor(Color.TRANSPARENT);
+                        togglebtn_recommand.setBackgroundColor(Color.RED);
+                        lastInnerFrag = recommandFragment;
+                        //显示recommandFragment视图
+                        transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        transaction.hide(latestToday_innerFragment);
+                        transaction.show(recommandFragment);
+                        transaction.commit();
+
+                //点击今日最新
                 } else if (checkedId == R.id.ic_home_btn_latest) {
-                    togglebtn_recommand.setBackgroundColor(Color.TRANSPARENT);
-                    togglebtn_latest.setBackgroundColor(Color.RED);
+                        togglebtn_recommand.setBackgroundColor(Color.TRANSPARENT);
+                        togglebtn_latest.setBackgroundColor(Color.RED);
+                        lastInnerFrag = latestToday_innerFragment;
+                        //显示latestToday_innerFragment视图
+                        transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        transaction.hide(recommandFragment);
+                        transaction.show(latestToday_innerFragment);
+                        transaction.commit();
                 }
             }
         });
@@ -209,17 +234,16 @@ public class HomeFragment1 extends BaseFragment {
         IndexBean indexBean = loadLayout1.getIndexBean();
         String layoutID = indexBean.getData().getLayout();
         if ("1".equals(layoutID)) {
+            //加载轮播图
             List<IndexBean.DataBean.JiaodiantuBean> jiaodiantu = indexBean.getData().getJiaodiantu();
             //判断传回的视图个数与ViewPager中的视图个数是否相等，并使其二者包含视图个数相等
             if (jiaodiantu.size() > vpData.size()) {
-                int size = jiaodiantu.size() - vpData.size();
-                for (int i = 0; i < size; i++) {
+                for (int i = 0; i < jiaodiantu.size() - vpData.size(); i++) {
                     ImageView imageView = createImageView();
                     vpData.add(imageView);
                     homeFragPagerAdapter.notifyDataSetChanged();
                 }
             }
-            //加载轮播图
             for (int i = 0; i < jiaodiantu.size(); i++) {
                 Picasso.with(getActivity())
                         .load(jiaodiantu.get(i).getUrl())
@@ -262,15 +286,15 @@ public class HomeFragment1 extends BaseFragment {
     }
 
     @Override
-    public void onCreate (@Nullable Bundle savedInstanceState){
-        EventBus.getDefault().register(this);
-        super.onCreate(savedInstanceState);
-    }
+        public void onCreate (@Nullable Bundle savedInstanceState){
+            EventBus.getDefault().register(this);
+            super.onCreate(savedInstanceState);
+        }
 
-    @Override
-    public void onDestroy () {
-        isPlay = false;
-        EventBus.getDefault().unregister(this);
-        super.onDestroy();
+        @Override
+        public void onDestroy () {
+            isPlay = false;
+            EventBus.getDefault().unregister(this);
+            super.onDestroy();
+        }
     }
-}

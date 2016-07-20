@@ -622,6 +622,132 @@ public class IndexBean {
         }
 
         public static class JinrizuixinBean {
+            /**
+             * "digest": "墙面采用一种淡淡的蓝灰色调，家具有点混搭，总体以自然、实木、复古为主旋律。",
+             * "url": "http://hzyzq-10006163.image.myqcloud.com/2c2fed92-9dfc-44aa-abdc-254ea71766ee",
+             * "target_url": "",
+             * "title": "92平现代简约混搭美法温馨小屋",
+             * "view": "11238",
+             * "praise": "41",
+             * "date": "2016-07-20",
+             * "data_type": "6",
+             * "id": "",
+             * "album_id": "3327",
+             * "room_style": "375",
+             * "package": "0",
+             * "type": "2"
+             */
+            private String digest;
+            private String url;
+            private String target_url;
+            private String title;
+            private String view;
+            private String praise;
+            private String date;
+            private String data_type;
+            private String id;
+            private String album_id;
+            private String room_style;
+            @SerializedName("package")
+            private String type;
+
+            public String getAlbum_id() {
+                return album_id;
+            }
+
+            public void setAlbum_id(String album_id) {
+                this.album_id = album_id;
+            }
+
+            public String getData_type() {
+                return data_type;
+            }
+
+            public void setData_type(String data_type) {
+                this.data_type = data_type;
+            }
+
+            public String getDate() {
+                return date;
+            }
+
+            public void setDate(String date) {
+                this.date = date;
+            }
+
+            public String getDigest() {
+                return digest;
+            }
+
+            public void setDigest(String digest) {
+                this.digest = digest;
+            }
+
+            public String getId() {
+                return id;
+            }
+
+            public void setId(String id) {
+                this.id = id;
+            }
+
+            public String getPraise() {
+                return praise;
+            }
+
+            public void setPraise(String praise) {
+                this.praise = praise;
+            }
+
+            public String getRoom_style() {
+                return room_style;
+            }
+
+            public void setRoom_style(String room_style) {
+                this.room_style = room_style;
+            }
+
+            public String getTarget_url() {
+                return target_url;
+            }
+
+            public void setTarget_url(String target_url) {
+                this.target_url = target_url;
+            }
+
+            public String getTitle() {
+                return title;
+            }
+
+            public void setTitle(String title) {
+                this.title = title;
+            }
+
+            public String getType() {
+                return type;
+            }
+
+            public void setType(String type) {
+                this.type = type;
+            }
+
+            public String getUrl() {
+                return url;
+            }
+
+            public void setUrl(String url) {
+                this.url = url;
+            }
+
+            public String getView() {
+                return view;
+            }
+
+            public void setView(String view) {
+                this.view = view;
+            }
+
+
         }
     }
 
