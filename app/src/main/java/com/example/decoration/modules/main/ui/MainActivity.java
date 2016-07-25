@@ -23,7 +23,7 @@ import com.example.decoration.module.homefrag.bean.IndexBean;
 import com.example.decoration.module.homefrag.dao.IndexDao;
 import com.example.decoration.module.homefrag.ui.HomeFragment1;
 import com.example.decoration.module.homefrag.ui.HomeFragment2;
-import com.example.decoration.module.myfrag.ui.MyFragment;
+import com.example.decoration.module.myfrag.myself.ui.MyFragment;
 import com.example.decoration.module.nearbyfrag.ui.NearByFragment;
 import com.example.decoration.module.ownerfrag.ui.OwnerFragment;
 import com.example.decoration.modules.main.bean.CityBean;

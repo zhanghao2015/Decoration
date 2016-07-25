@@ -1,4 +1,4 @@
-package com.example.decoration.module.myfrag.ui;
+package com.example.decoration.module.myfrag.myself.ui;
 
 import android.app.Activity;
 import android.content.Intent;
