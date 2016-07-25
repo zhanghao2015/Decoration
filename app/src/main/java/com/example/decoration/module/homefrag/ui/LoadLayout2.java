@@ -8,7 +8,16 @@ import com.example.decoration.module.homefrag.bean.IndexBean;
 public class LoadLayout2 {
 
     public IndexBean indexBean;
-    public String layoutID;
+    public String site_name;
+    public String site_id;
+
+    public String getSite_id() {
+        return site_id;
+    }
+
+    public void setSite_id(String site_id) {
+        this.site_id = site_id;
+    }
 
     public IndexBean getIndexBean() {
         return indexBean;
@@ -18,16 +27,17 @@ public class LoadLayout2 {
         this.indexBean = indexBean;
     }
 
-    public String getLayoutID() {
-        return layoutID;
+    public String getSite_name() {
+        return site_name;
     }
 
-    public void setLayoutID(String layoutID) {
-        this.layoutID = layoutID;
+    public void setSite_name(String layoutID) {
+        this.site_name = layoutID;
     }
 
-    public LoadLayout2(IndexBean indexBean, String layoutID) {
+    public LoadLayout2(IndexBean indexBean, String site_name,String site_id) {
         this.indexBean = indexBean;
-        this.layoutID = layoutID;
+        this.site_name = site_name;
+        this.site_id = site_id;
     }
 }

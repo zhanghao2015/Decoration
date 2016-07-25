@@ -2,23 +2,13 @@ package com.example.decoration.module.homefrag.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 
 import com.example.decoration.R;
 import com.example.decoration.base.BaseFragment;
 import com.example.decoration.module.homefrag.bean.IndexBean;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
-import com.yqritc.recyclerviewflexibledivider.VerticalDividerItemDecoration;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -33,8 +23,8 @@ public class Recommand_InnerFragment extends BaseFragment {
 
 
     private MyRecyclerView recyclerView;
-    private MyAdapter mAdapter;
-    private List<String> data;
+    private MyRecommandAdapter mAdapter;
+    private List<IndexBean.DataBean.WeinituijianBean> data;
 
     @Override
     protected int setViewID() {
@@ -59,7 +49,7 @@ public class Recommand_InnerFragment extends BaseFragment {
                 .build());
 
         data = new ArrayList<>();
-        mAdapter = new MyAdapter(data,this);
+        mAdapter = new MyRecommandAdapter(data,this);
         recyclerView.setAdapter(mAdapter);
     }
 
@@ -78,12 +68,18 @@ public class Recommand_InnerFragment extends BaseFragment {
     public void onLoadRecommandFrag(LoadRecommandFrag recommandFrag){
         IndexBean indexBean = recommandFrag.getIndexBean();
         List<IndexBean.DataBean.WeinituijianBean> weinituijian = indexBean.getData().getWeinituijian();
-        for (int i = 0; i < weinituijian.size(); i++) {
-            String url = weinituijian.get(i).getUrl();
-            data.add(url);
+        if(data.size()==0){
+            for (int i = 0; i < weinituijian.size(); i++) {
+                data.add(weinituijian.get(i));
+            }
+            mAdapter.notifyDataSetChanged();
+        }else{
+            data.clear();
+            for (int i = 0; i < weinituijian.size(); i++) {
+                data.add(weinituijian.get(i));
+            }
+            mAdapter.notifyDataSetChanged();
         }
-        mAdapter.notifyDataSetChanged();
-
     }
 
     @Override

@@ -1,7 +1,9 @@
 package com.example.decoration.modules.main.ui;
 
+import android.content.DialogInterface;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -21,14 +23,18 @@ import com.example.decoration.module.homefrag.bean.IndexBean;
 import com.example.decoration.module.homefrag.dao.IndexDao;
 import com.example.decoration.module.homefrag.ui.HomeFragment1;
 import com.example.decoration.module.homefrag.ui.HomeFragment2;
-import com.example.decoration.module.myfrag.myself.ui.MyFragment;
+import com.example.decoration.module.myfrag.ui.MyFragment;
 import com.example.decoration.module.nearbyfrag.ui.NearByFragment;
 import com.example.decoration.module.ownerfrag.ui.OwnerFragment;
+import com.example.decoration.modules.main.bean.CityBean;
+import com.example.decoration.modules.main.dao.SiteDao;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+
+import java.util.List;
 
 public class MainActivity extends BaseActivity {
 
@@ -49,11 +55,12 @@ public class MainActivity extends BaseActivity {
     private MyFragment myFragment;
     private Fragment lastFragment;
     private FragmentTransaction transaction;
-    public static MainActivity mainActivity;
-    private IndexBean indexBean;
+    private RadioButton radiobtn_beautifuleffect_main;
+    private RadioButton radiobtn_nearby_main;
+    private AlertDialog dialog;
 
 
-    //退出鲜果
+    //退出优化
     @Override
     public void onBackPressed() {
         if (pw.isShowing()) {
@@ -63,7 +70,6 @@ public class MainActivity extends BaseActivity {
             setAplh(0.5f);
             pw.showAtLocation(getWindow().getDecorView(), Gravity.CENTER, 0, 0);
         }
-
     }
 
     //点击PopupWindow时设置背景变暗方法
@@ -80,12 +86,12 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void findView() {
+        //注入控件
         ViewUtils.inject(this);
-        homeFragment2 = new HomeFragment2();
-        homeFragment1 = new HomeFragment1();
-
         //加载PopupWindow的布局视图，并找出其中的按钮
-        pwView = (RelativeLayout) getLayoutInflater().inflate(R.layout.layout_popupwindow,null);
+        pwView = (RelativeLayout) getLayoutInflater().inflate(R.layout.layout_popupwindow, null);
+        radiobtn_beautifuleffect_main = (RadioButton) findViewById(R.id.radiobtn_beautifuleffect_main);
+        radiobtn_nearby_main = (RadioButton) findViewById(R.id.radiobtn_nearby_main);
         popupbtn_cancel = (Button) pwView.findViewById(R.id.popupbtn_cancel_main);
         popupbtn_exit = (Button) pwView.findViewById(R.id.popupbtn_exit_main);
     }
@@ -93,51 +99,50 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void init() {
         EventBus.getDefault().register(this);
-        mainActivity=this;
         //默认设置进入页面时点击了主页
         radiobtn_home.setChecked(true);
         //初始化PopupWindow
         pw = new PopupWindow(pwView, ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT, false);
-
+        homeFragment2 = new HomeFragment2();
+        homeFragment1 = new HomeFragment1();
         nearByFragment = new NearByFragment();
         ownerFragment = new OwnerFragment();
         beautifulEffectFragment = new BeautifulEffectFragment();
         myFragment = new MyFragment();
         //开启事务，并添加所需要的Fragment，将不需要显示的Fragment先隐藏，
-        //默认设置homeFragment2为进入时界面
-        lastFragment = homeFragment2;
+        //默认设置homeFragment1为进入时界面
+        lastFragment = homeFragment1;
         transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.fragment_container,homeFragment2);
-        transaction.add(R.id.fragment_container,homeFragment1);
-        transaction.hide(homeFragment1);
-        transaction.add(R.id.fragment_container,nearByFragment);
+        transaction.add(R.id.fragment_container, homeFragment1);
+        transaction.add(R.id.fragment_container, homeFragment2);
+        transaction.hide(homeFragment2);
+        transaction.add(R.id.fragment_container, nearByFragment);
         transaction.hide(nearByFragment);
         transaction.add(R.id.fragment_container, ownerFragment);
         transaction.hide(ownerFragment);
-        transaction.add(R.id.fragment_container,beautifulEffectFragment);
+        transaction.add(R.id.fragment_container, beautifulEffectFragment);
         transaction.hide(beautifulEffectFragment);
-        transaction.add(R.id.fragment_container,myFragment);
+        transaction.add(R.id.fragment_container, myFragment);
         transaction.hide(myFragment);
         transaction.commit();
     }
+
     //设定一个flag值，用来判断当前主页fragment显示的是1布局还是2布局
     boolean flag = true;
+
     @Subscribe
-    public void onEvent(String str){
+    public void onEvent(String str) {
         transaction = getSupportFragmentManager().beginTransaction();
-        if("to1".equals(str)){
-            IndexDao.getIndexBean("16");
-            flag = false;
-            transaction.hide(lastFragment);
-            transaction.show(homeFragment1);
-            lastFragment = homeFragment1;
-        }else if("to2".equals(str)){
-            IndexDao.getIndexBean("100");
-            flag = true;
-            transaction.hide(lastFragment);
-            transaction.show(homeFragment2);
-            lastFragment = homeFragment2;
+        if ("请求选择城市".equals(str)) {
+             SiteDao.getSite();
+            dialog.show();
+        } else if ("跳转到美图".equals(str)) {
+            radiobtn_beautifuleffect_main.setChecked(true);
+            showFragment(lastFragment, beautifulEffectFragment);
+        }else if ("跳转到附近".endsWith(str)) {
+            radiobtn_nearby_main.setChecked(true);
+            showFragment(lastFragment, nearByFragment);
         }
         transaction.commit();
     }
@@ -152,14 +157,14 @@ public class MainActivity extends BaseActivity {
                     case R.id.radiobtn_home_main:
                         Toast.makeText(MainActivity.this, "radiobtn_home_main", Toast.LENGTH_LONG).show();
                         if (flag) {
-                            showFragment(lastFragment,homeFragment2);
-                        }else{
-                            showFragment(lastFragment,homeFragment1);
+                            showFragment(lastFragment, homeFragment1);
+                        } else {
+                            showFragment(lastFragment, homeFragment2);
                         }
                         break;
                     case R.id.radiobtn_nearby_main:
                         Toast.makeText(MainActivity.this, "radiobtn_nearby_main", Toast.LENGTH_LONG).show();
-                        showFragment(lastFragment,nearByFragment);
+                        showFragment(lastFragment, nearByFragment);
                         break;
                     case R.id.radiobtn_owner_main:
                         Toast.makeText(MainActivity.this, "radiobtn_owner_main", Toast.LENGTH_LONG).show();
@@ -167,23 +172,18 @@ public class MainActivity extends BaseActivity {
                         break;
                     case R.id.radiobtn_beautifuleffect_main:
                         Toast.makeText(MainActivity.this, "radiobtn_beautifuleffect_main", Toast.LENGTH_LONG).show();
-                        showFragment(lastFragment,beautifulEffectFragment);
+                        showFragment(lastFragment, beautifulEffectFragment);
                         break;
                     case R.id.radiobtn_my_main:
                         Toast.makeText(MainActivity.this, "radiobtn_my_main", Toast.LENGTH_LONG).show();
-                        showFragment(lastFragment,myFragment);
+                        showFragment(lastFragment, myFragment);
                         break;
                 }
                 transaction.commit();
             }
 
             //替换显示的Fragment方法
-            private void showFragment(Fragment Fragment2Hide, Fragment Fragment2Show) {
-                transaction = getSupportFragmentManager().beginTransaction();
-                transaction.hide(Fragment2Hide);
-                transaction.show(Fragment2Show);
-                lastFragment = Fragment2Show;
-            }
+
         });
         //给Popupwindow取消按钮设监听
         popupbtn_cancel.setOnClickListener(new View.OnClickListener() {
@@ -206,31 +206,62 @@ public class MainActivity extends BaseActivity {
 
     }
 
+    private void showFragment(Fragment Fragment2Hide, Fragment Fragment2Show) {
+        transaction = getSupportFragmentManager().beginTransaction();
+        transaction.hide(Fragment2Hide);
+        transaction.show(Fragment2Show);
+        lastFragment = Fragment2Show;
+    }
+
+
     @Subscribe
-    public void onLoadLayout(IndexBean indexBean){
+    public void onLoadLayout(IndexBean indexBean) {
         String layoutID = indexBean.getData().getLayout();
         transaction = getSupportFragmentManager().beginTransaction();
-        if("1".equals(layoutID)){
-            flag = false;
+        if ("1".equals(layoutID)) {
+            flag = true;
             transaction.hide(lastFragment);
             transaction.show(homeFragment1);
             lastFragment = homeFragment1;
-            Log.d("huizhuang","主页面加载了布局1");
-        }else if("2".equals(layoutID)){
-            flag = true;
+            Log.d("huizhuang", "主页面加载了布局1");
+        } else if ("2".equals(layoutID)) {
+            flag = false;
             transaction.hide(lastFragment);
             transaction.show(homeFragment2);
             lastFragment = homeFragment2;
-            Log.d("huizhuang","主页面加载了布局2");
+            Log.d("huizhuang", "主页面加载了布局2");
         }
         transaction.commit();
     }
 
 
+    @Subscribe
+    public void onSiteListListener(CityBean cityBean){
+        final List<CityBean.ItemsBean> items = cityBean.getItems();
+        final String[] site_name = new String[items.size()];
+        final String[] site_id = new String[items.size()];
+        for (int i = 0; i < items.size(); i++) {
+            site_name[i] = items.get(i).getSite_name();
+            site_id[i] = items.get(i).getSite_id();
+        }
+        dialog = new AlertDialog.Builder(this)
+                                .setTitle("请选择城市")
+                                .setItems(site_name, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        IndexDao.getIndexBean(site_id[which],site_name[which],MainActivity.this);
+                                        Log.d("huizhuang","选择了"+site_name[which]+"城市ID："+site_id[which]);
+                                    }
+                                })
+                                .create();
+    }
+
     @Override
     protected void loadDate() {
-        IndexDao.getIndexBean("100");
-
+        //请求城市列表
+        SiteDao.getSite();
+        //默认加载深圳
+        IndexDao.getIndexBean("100","深圳", this);
     }
 
     @Override

@@ -8,11 +8,28 @@ import com.example.decoration.module.homefrag.bean.IndexBean;
 public class LoadLatestFrag {
 
     private IndexBean indexBean;
-    private String layoutID;
+    private String site_name;
+    private String site_id;
+
+    public String getSite_id() {
+        return site_id;
+    }
+
+    public void setSite_id(String site_id) {
+        this.site_id = site_id;
+    }
+
+    public String getSite_name() {
+        return site_name;
+    }
+
+    public void setSite_name(String site_name) {
+        this.site_name = site_name;
+    }
 
     public LoadLatestFrag(IndexBean indexBean, String layoutID) {
         this.indexBean = indexBean;
-        this.layoutID = layoutID;
+        this.site_name = layoutID;
     }
 
     public IndexBean getIndexBean() {
@@ -23,11 +40,5 @@ public class LoadLatestFrag {
         this.indexBean = indexBean;
     }
 
-    public String getLayoutID() {
-        return layoutID;
-    }
 
-    public void setLayoutID(String layoutID) {
-        this.layoutID = layoutID;
-    }
 }

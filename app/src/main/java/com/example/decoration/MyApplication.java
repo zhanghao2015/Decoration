@@ -3,6 +3,7 @@ package com.example.decoration;
 import android.app.Application;
 import android.content.Context;
 
+import com.example.decoration.common.utils.LruCacheUtils;
 import com.lidroid.xutils.DbUtils;
 import com.se7en.utils.SystemUtil;
 
@@ -17,6 +18,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         SystemUtil.setContext(this);
+        LruCacheUtils.initLruCache();
         context=this;
     }
 

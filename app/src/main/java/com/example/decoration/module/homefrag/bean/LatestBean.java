@@ -6,6 +6,25 @@ package com.example.decoration.module.homefrag.bean;
 public class LatestBean {
 
     private String url;
+    private String target_url;
+
+    public String getTarget_url() {
+        return target_url;
+    }
+
+    public void setTarget_url(String target_url) {
+        this.target_url = target_url;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    private String title;
     private String content;
     private String time;
     private String view;

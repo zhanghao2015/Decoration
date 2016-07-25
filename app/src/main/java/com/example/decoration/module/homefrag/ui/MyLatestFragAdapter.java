@@ -1,6 +1,9 @@
 package com.example.decoration.module.homefrag.ui;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.decoration.R;
+import com.example.decoration.common.utils.LruCacheUtils;
 import com.example.decoration.module.homefrag.bean.LatestBean;
 import com.squareup.picasso.Picasso;
 
@@ -21,10 +25,12 @@ import java.util.List;
 public class MyLatestFragAdapter extends RecyclerView.Adapter<MyLatestFragAdapter.MyHolder>{
     private List<LatestBean> data;
     private Context context;
+    private Fragment fragment;
 
     public MyLatestFragAdapter(List<LatestBean> data, LatestToday_InnerFragment fragment) {
         this.data = data;
         this.context = fragment.getActivity();
+        this.fragment = fragment;
     }
 
     @Override
@@ -35,7 +41,7 @@ public class MyLatestFragAdapter extends RecyclerView.Adapter<MyLatestFragAdapte
     }
 
     @Override
-    public void onBindViewHolder(MyHolder holder, int position) {
+    public void onBindViewHolder(MyHolder holder, final int position) {
         LatestBean latestBean = data.get(position);
         String url = latestBean.getUrl();
         String content = latestBean.getContent();
@@ -43,12 +49,24 @@ public class MyLatestFragAdapter extends RecyclerView.Adapter<MyLatestFragAdapte
         String view = latestBean.getView();
         String praise = latestBean.getPraise();
         Picasso.with(context)
-                .load(url)
-                .into(holder.mivItem);
+               .load(data.get(position).getUrl())
+               .config(Bitmap.Config.RGB_565)
+               .into(holder.mivItem);
+        Log.d("huizhuang","position ："+position);
         holder.mtvItem.setText(content);
         holder.mtimeItem.setText(date);
         holder.mviewItem.setText(view);
         holder.mpraiseItem.setText(praise);
+        holder.mivItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, WebViewActivity.class);
+                intent.putExtra("target_url", data.get(position).getTarget_url());
+                intent.putExtra("title", data.get(position).getTitle());
+                context.startActivity(intent);
+                Log.d("huizhuang","点了position:"+position);
+            }
+        });
     }
 
     @Override
@@ -71,12 +89,6 @@ public class MyLatestFragAdapter extends RecyclerView.Adapter<MyLatestFragAdapte
             mtimeItem = (TextView) itemView.findViewById(R.id.mtimeItem_latestfrag);
             mviewItem = (TextView) itemView.findViewById(R.id.mviewItem_latestfrag);
             mpraiseItem = (TextView) itemView.findViewById(R.id.mpraiseItem_latestfrag);
-            mivItem.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d("huizhuang","点了视图为你推荐v:"+v.getId());
-                }
-            });
         }
     }
 }

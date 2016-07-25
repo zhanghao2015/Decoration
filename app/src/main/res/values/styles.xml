@@ -22,16 +22,16 @@
 
 
     <style name="imagetranslate">
-        <item name="android:scaleType">fitXY</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:layout_height">0dp</item>
-        <item name="android:layout_width">match_parent</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">wrap_content</item>
     </style>
 
     <style name="blankAttr">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">15dp</item>
-        <item name="android:background">#D9D9D9</item>
+        <item name="android:background">@color/background</item>
     </style>
 
     <style name="segmentationLine">

@@ -49,8 +49,6 @@ public class LatestToday_InnerFragment extends BaseFragment {
                 .color(android.R.color.white)
                 .size(15)
                 .build());
-
-
         data = new ArrayList<>();
         mAdapter = new MyLatestFragAdapter(data, this);
         recyclerView_latest.setAdapter(mAdapter);
@@ -70,29 +68,44 @@ public class LatestToday_InnerFragment extends BaseFragment {
     public void onLoadLatestFragData(LoadLatestFrag latestFrag) {
         IndexBean indexBean = latestFrag.getIndexBean();
         List<IndexBean.DataBean.JinrizuixinBean> jinrizuixin = indexBean.getData().getJinrizuixin();
-        for (int i = 0; i < jinrizuixin.size(); i++) {
-            String url = jinrizuixin.get(i).getUrl();
-            String content = jinrizuixin.get(i).getDigest();
-            String date = jinrizuixin.get(i).getDate();
-            String view = jinrizuixin.get(i).getView();
-            String praise = jinrizuixin.get(i).getPraise();
-            LatestBean latestBean = new LatestBean();
-            latestBean.setUrl(url);
-            latestBean.setContent(content);
-            latestBean.setTime(date);
-            latestBean.setView(view);
-            latestBean.setPraise(praise);
-            data.add(latestBean);
-            Log.d("huizhuang","第"+i+"个数据");
-            Log.d("huizhuang","url :"+url);
-            Log.d("huizhuang","content :"+content);
-            Log.d("huizhuang","date :"+date);
-            Log.d("huizhuang","view :"+view);
-            Log.d("huizhuang","praise :"+praise);
+        if(data.size()==0){
+            for (int i = 0; i < jinrizuixin.size(); i++) {
+                String url = jinrizuixin.get(i).getUrl();
+                String content = jinrizuixin.get(i).getDigest();
+                String date = jinrizuixin.get(i).getDate();
+                String view = jinrizuixin.get(i).getView();
+                String praise = jinrizuixin.get(i).getPraise();
+                String target_url = jinrizuixin.get(i).getTarget_url();
+                String title = jinrizuixin.get(i).getTitle();
+                LatestBean latestBean = new LatestBean();
+                latestBean.setTitle(title);
+                latestBean.setTarget_url(target_url);
+                latestBean.setUrl(url);
+                latestBean.setContent(content);
+                latestBean.setTime(date);
+                latestBean.setView(view);
+                latestBean.setPraise(praise);
+                data.add(latestBean);
+            }
+            mAdapter.notifyDataSetChanged();
+        }else{
+            data.clear();
+            for (int i = 0; i < jinrizuixin.size(); i++) {
+                String url = jinrizuixin.get(i).getUrl();
+                String content = jinrizuixin.get(i).getDigest();
+                String date = jinrizuixin.get(i).getDate();
+                String view = jinrizuixin.get(i).getView();
+                String praise = jinrizuixin.get(i).getPraise();
+                LatestBean latestBean = new LatestBean();
+                latestBean.setUrl(url);
+                latestBean.setContent(content);
+                latestBean.setTime(date);
+                latestBean.setView(view);
+                latestBean.setPraise(praise);
+                data.add(latestBean);
+            }
+            mAdapter.notifyDataSetChanged();
         }
-        Log.d("huizhuang","data个数:"+data.size());
-        mAdapter.notifyDataSetChanged();
-        Log.d("huizhuang","今日最新加载完毕");
     }
 
     @Override

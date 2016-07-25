@@ -12,15 +12,19 @@
         android:orientation="horizontal">
 
         <LinearLayout
+            android:background="@drawable/webview_backpress_selector"
             android:id="@+id/locating_homefrag"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="10dp"
+            android:gravity="center_horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tv_site_name"
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -76,8 +80,7 @@
             android:src="@mipmap/ic_home_message" />
     </RelativeLayout>
 
-    <ScrollView
-        android:scrollbars="none"
+    <com.example.decoration.module.homefrag.ui.MyNestedScrollView
         android:layout_below="@id/titlebar_homefrag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -102,40 +105,10 @@
             android:layout_height="wrap_content">
             <RadioGroup
                 android:id="@+id/btn_viewpager_container"
+                android:gravity="left"
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-                <RadioButton
-                    android:button="@null"
-                    android:background="@null"
-                    android:drawableLeft="@drawable/btn_viewpager_homefrag_selector"
-                    android:id="@+id/btn1_virepager"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <RadioButton
-                    android:layout_marginLeft="10dp"
-                    android:background="@null"
-                    android:drawableLeft="@drawable/btn_viewpager_homefrag_selector"
-                    android:button="@null"
-                    android:id="@+id/btn2_virepager"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <RadioButton
-                    android:layout_marginLeft="10dp"
-                    android:background="@null"
-                    android:drawableLeft="@drawable/btn_viewpager_homefrag_selector"
-                    android:button="@null"
-                    android:id="@+id/btn3_virepager"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <RadioButton
-                    android:layout_marginLeft="10dp"
-                    android:background="@null"
-                    android:drawableLeft="@drawable/btn_viewpager_homefrag_selector"
-                    android:button="@null"
-                    android:id="@+id/btn4_virepager"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
             </RadioGroup>
 
         </LinearLayout>
@@ -203,6 +176,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <LinearLayout
+                    android:id="@+id/gongju1"
                     android:gravity="center_horizontal"
                     android:layout_weight="1"
                     android:orientation="vertical"
@@ -221,6 +195,7 @@
                         android:layout_height="wrap_content" />
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/gongju2"
                     android:gravity="center_horizontal"
                     android:layout_weight="1"
                     android:orientation="vertical"
@@ -240,6 +215,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/gongju3"
                     android:gravity="center_horizontal"
                     android:layout_weight="1"
                     android:orientation="vertical"
@@ -266,6 +242,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <LinearLayout
+                    android:id="@+id/gongju4"
                     android:gravity="center_horizontal"
                     android:layout_weight="1"
                     android:orientation="vertical"
@@ -284,6 +261,7 @@
                         android:layout_height="wrap_content" />
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/gongju5"
                     android:gravity="center_horizontal"
                     android:layout_weight="1"
                     android:orientation="vertical"
@@ -303,6 +281,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/gongju6"
                     android:gravity="center_horizontal"
                     android:layout_weight="1"
                     android:orientation="vertical"
@@ -330,7 +309,7 @@
 
 
     </RelativeLayout>
-    </ScrollView>
+    </com.example.decoration.module.homefrag.ui.MyNestedScrollView>
 
 
 </RelativeLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".module.homefrag.ui.WebViewActivity">
+
+    <android.support.percent.PercentRelativeLayout
+        android:id="@+id/titlebar_zhuangxiubaodian"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/radiobtn_checked"
+        android:orientation="horizontal">
+
+        <android.support.percent.PercentRelativeLayout
+            android:background="@drawable/webview_backpress_selector"
+            android:onClick="backpress"
+            android:layout_width="60dp"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:src="@mipmap/uvv_back_btn" />
+        </android.support.percent.PercentRelativeLayout>
+
+
+        <TextView
+            app:layout_widthPercent="60%"
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="惠装装修"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+    </android.support.percent.PercentRelativeLayout>
+    <ProgressBar
+        android:id="@+id/progressbar_zxbd"
+        android:layout_below="@id/titlebar_zhuangxiubaodian"
+        android:max="100"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:indeterminate="false"
+        android:layout_width="match_parent"
+        android:layout_height="5dp" />
+
+    <WebView
+        android:id="@+id/webview_zhuangxiubaodian"
+        android:layout_below="@id/progressbar_zxbd"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+
+</android.support.percent.PercentRelativeLayout>

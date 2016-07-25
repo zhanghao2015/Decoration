@@ -3,6 +3,7 @@ package com.example.decoration.common.net;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.wifi.WifiManager;
 import android.os.Handler;
 import android.util.Log;
 
@@ -40,8 +41,6 @@ public class HttpNet {
                 try {
                     URL url = new URL(strUrl);
                     HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-
-
                     urlConnection.setRequestMethod(strRequestMethod);
                     urlConnection.connect();
 
@@ -130,85 +129,23 @@ public class HttpNet {
         }
         return false;
     }
-    //将图片URL网址格式化
-    public static String urlFormat(String resUrl){
-//        http:\/\/hzyzq-10006163.image.myqcloud.com\/2bb4cacb-8967-447b-808d-a03413ac8718
-        StringBuffer sb = new StringBuffer(resUrl);
-        StringBuffer sb2 = new StringBuffer();
-        for (int i = 0; i < sb.length(); i++) {
-            if(sb.charAt(i)!='/'){
-                sb2.append(sb.charAt(i));
-            }
-        }
-        return sb2.toString();
-    }
-    //将Unicode转成中文
-    public static String convertUnicode(String ori) {
-        char aChar;
-        int len = ori.length();
-        StringBuffer outBuffer = new StringBuffer(len);
-        for (int x = 0; x < len; ) {
-            aChar = ori.charAt(x++);
-            if (aChar == '\\') {
-                aChar = ori.charAt(x++);
-                if (aChar == 'u') {
-                    // Read the xxxx
-                    int value = 0;
-                    for (int i = 0; i < 4; i++) {
-                        aChar = ori.charAt(x++);
-                        switch (aChar) {
-                            case '0':
-                            case '1':
-                            case '2':
-                            case '3':
-                            case '4':
-                            case '5':
-                            case '6':
-                            case '7':
-                            case '8':
-                            case '9':
-                                value = (value << 4) + aChar - '0';
-                                break;
-                            case 'a':
-                            case 'b':
-                            case 'c':
-                            case 'd':
-                            case 'e':
-                            case 'f':
-                                value = (value << 4) + 10 + aChar - 'a';
-                                break;
-                            case 'A':
-                            case 'B':
-                            case 'C':
-                            case 'D':
-                            case 'E':
-                            case 'F':
-                                value = (value << 4) + 10 + aChar - 'A';
-                                break;
-                            default:
-                                throw new IllegalArgumentException(
-                                        "Malformed   \\uxxxx   encoding.");
-                        }
-                    }
-                    outBuffer.append((char) value);
-                } else {
-                    if (aChar == 't')
-                        aChar = '\t';
-                    else if (aChar == 'r')
-                        aChar = '\r';
-                    else if (aChar == 'n')
-                        aChar = '\n';
-                    else if (aChar == 'f')
-                        aChar = '\f';
-                    outBuffer.append(aChar);
-                }
-            } else
-                outBuffer.append(aChar);
 
-        }
-        return outBuffer.toString();
-    }
 
+
+    //获取wifi状态
+    //WIFI_STATE_DISABLING = 0  wifi关闭中
+    //WIFI_STATE_DISABLED = 1   wifi已关闭
+    //WIFI_STATE_ENABLING = 2   wifi启动中
+    //WIFI_STATE_ENABLED = 3    wifi已启动
+    //WIFI_STATE_UNKNOWN = 4    wifi状态未知
+    public static int getWifiState(Context context) {
+        WifiManager wifiManager = (WifiManager) context.getSystemService(context.WIFI_SERVICE);
+        if (wifiManager != null) {
+            int wifiState = wifiManager.getWifiState();
+            return wifiState;
+        }
+        return -1;
+    }
 
 
 }

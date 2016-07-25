@@ -26,7 +26,7 @@ public class ThreadTask
     /**
      * 网络线程最大数量
      */
-    private final int netThreadCount = 5;
+    private final int netThreadCount = 10;
 
     /**
      * 数据库线程最大数量
